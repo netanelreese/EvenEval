@@ -7,14 +7,14 @@ import Grader
 class Grouper:
     def autogroup(self): #Auto groups each member in a course
         print("sugma balls")
-    def create_group(self, category_id): #Creates a group within a category id
+    def create_group(self, category_id, group_name): #Creates a group within a category id
         course = config.COURSE #retrieves the course from the config
         categories = course.get_group_categories() #gets all of the group categories from the course
         for category in categories: #loops through all of the categories and if one matches the input ID it creates a group inside of it
             id = category.id
             if (id == category_id): #compares the category id's to the input parameter
                 group = category.create_group() #creates a group
-                group.edit(name='Maddie Quiroga') #should name the group, isnt
+                group.edit(name=group_name) #should name the group, isnt
 
     def get_students_from_group_id(self, group_id):
         groups = config.COURSE.get_groups()
