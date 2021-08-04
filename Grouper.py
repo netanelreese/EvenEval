@@ -11,7 +11,8 @@ class Grouper:
         course = config.COURSE
         categories = course.get_group_categories()
         for category in categories:
-            if (category == category_id):
+            id = category.id
+            if (id == category_id):
                 return category.create_group(group={'name': 'Maddie Quiroga'})
 
     def get_students_from_group_id(self, group_id):
