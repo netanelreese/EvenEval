@@ -26,6 +26,19 @@ class Grouper:
             else:
                 print("Fuck you asshole you gave us the wrong id")
     def add_members(self, group_id, user_id):
-        print()
+        groups = config.COURSE.get_groups()
+        if (not self.find_user(user_id)):
+            for group in groups:
+                if (group.id == group_id):
+                    group.add_user(user_id)
+        else:
+            return None
     def remove_members(self, group_id, user_id):
         print()
+    def find_user(self, user_id):
+        users = config.COURSE.get_users()
+        for user in users:
+            if (user.id == user_id):
+                return True
+        return False
+
