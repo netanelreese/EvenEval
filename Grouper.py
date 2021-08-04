@@ -13,7 +13,10 @@ class Grouper:
         for category in categories:
             id = category.id
             if (id == category_id):
-                return category.create_group(group={'name': 'Maddie Quiroga'})
+                group = category.create_group()
+                group.edit(group={'name': 'Maddie Quiroga'})
+                print(group)
+                group.delete() #TODO : DELETE THIS
 
     def get_students_from_group_id(self, group_id):
         groups = config.COURSE.get_groups()
