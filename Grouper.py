@@ -29,7 +29,13 @@ class Grouper:
             if (group.id == group_id):
                 group.create_membership(user_id)
     def remove_members(self, group_id, user_id):
-        print()
+        groups = config.COURSE.get_groups()
+        for group in groups:
+            if (group.id == group_id):
+                users = group.get_users()
+                for user in users:
+                    if (user.id == user_id):
+                        group.remove_user(user)
     def find_user(self, user_id):
         users = config.COURSE.get_users()
         for user in users:
