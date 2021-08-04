@@ -14,7 +14,7 @@ class Grouper:
             id = category.id
             if (id == category_id): #compares the category id's to the input parameter
                 group = category.create_group() #creates a group
-                group.edit(group={'name': 'Maddie Quiroga'}) #should name the group, isnt
+                group.edit(name='Maddie Quiroga') #should name the group, isnt
 
     def get_students_from_group_id(self, group_id):
         groups = config.COURSE.get_groups()
