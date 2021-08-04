@@ -4,7 +4,7 @@ import Grouper
 import Grader
 
 def main() :
-    print("Maddie Quiroga")
-
+    grouper = Grouper.Grouper()
+    grouper.create_group(config.GROUP_CATEGORY_ID)
 if __name__ == "__main__":
     main()
