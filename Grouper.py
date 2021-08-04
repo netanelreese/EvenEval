@@ -6,6 +6,7 @@ import Grader
 
 class Grouper:
     def autogroup(self):
+        print("sugma balls")
     def create_group(self, category_id):
         course = config.COURSE
         categories = course.get_group_categories()
@@ -20,4 +21,7 @@ class Grouper:
             else:
                 print("Fuck you asshole you gave us the wrong id")
     def add_members(self, group_id, user_id):
+        print()
     def remove_members(self, group_id, user_id):
+        print()
+
