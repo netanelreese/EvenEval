@@ -9,10 +9,27 @@ import Grader
 class Grouper:
     def autogroup(self, group_num, category_id, class_num): #Auto groups each member in a course
         i = 0
-        num_users = self.cal_user_num(class_num, group_num)
+        added = 0
+
+        users = config.COURSE.get_users(enrollment_type=['student'])
+        flor = self.cal_user_num(class_num, group_num)
         while (i < group_num):
             group_name = "Group " + str(i)
-            self.create_group(category_id, group_name)
+            group = self.create_group(category_id, group_name)
+            j = 0
+            k = 0
+            for user in users:
+                if(k >= added):
+                    if (j < flor):
+                        self.add_members(group.id, users[added].id)
+                        j = j+1
+                        added = added + 1
+                    else:
+                        break
+                else:
+                    k = k+1
+            i = i + 1
+
     def create_group(self, category_id, group_name): #Creates a group within a category id
         course = config.COURSE #retrieves the course from the config
         categories = course.get_group_categories() #gets all of the group categories from the course
@@ -21,7 +38,7 @@ class Grouper:
             if (id == category_id): #compares the category id's to the input parameter
                 group = category.create_group() #creates a group
                 group.edit(name=group_name) #should name the group, isnt
-
+        return group
     def get_students_from_group_id(self, group_id):
         groups = config.COURSE.get_groups()
         for group in groups:
@@ -49,5 +66,7 @@ class Grouper:
                 return True
         return False
     def cal_user_num(self, class_num, group_num):
-        return floor(class_num/group_num)
-
+        flor = floor(class_num/group_num)
+        return flor
+    def get_user_ids(self):
+        ids = {}
