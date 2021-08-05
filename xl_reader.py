@@ -1,4 +1,4 @@
-import xlrd
+import openpyxl
 
 class xl_reader:
     print()
