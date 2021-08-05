@@ -1,3 +1,5 @@
+from math import floor
+
 from canvasapi.group import GroupCategory
 
 import config
@@ -5,8 +7,12 @@ from canvasapi import *
 import Grader
 
 class Grouper:
-    def autogroup(self): #Auto groups each member in a course
-        print("sugma balls")
+    def autogroup(self, group_num, category_id, class_num): #Auto groups each member in a course
+        i = 0
+        num_users = self.cal_user_num(class_num, group_num)
+        while (i < group_num):
+            group_name = "Group " + str(i)
+            self.create_group(category_id, group_name)
     def create_group(self, category_id, group_name): #Creates a group within a category id
         course = config.COURSE #retrieves the course from the config
         categories = course.get_group_categories() #gets all of the group categories from the course
@@ -42,4 +48,6 @@ class Grouper:
             if (user.id == user_id):
                 return True
         return False
+    def cal_user_num(self, class_num, group_num):
+        return floor(class_num/group_num)
 
