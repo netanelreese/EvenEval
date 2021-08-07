@@ -3,7 +3,6 @@ from math import floor
 import canvasapi
 
 import config
-import canvasapi
 import Grader
 
 class Grouper:
@@ -12,7 +11,7 @@ class Grouper:
         added = 0
 
         users = config.COURSE.get_users(enrollment_type=['student'])
-        flor = self.cal_user_num(class_num, group_num)
+        class_floor = self.cal_user_num(class_num, group_num)
         while (i < group_num):
             group_name = "Group " + str(i)
             group = self.create_group(category_id, group_name)
@@ -20,7 +19,7 @@ class Grouper:
             k = 0
             for user in users:
                 if(k >= added):
-                    if (j < flor):
+                    if (j < class_floor):
                         self.add_members(group.id, users[added].id)
                         j = j+1
                         added = added + 1
