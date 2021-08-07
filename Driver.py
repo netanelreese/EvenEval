@@ -1,4 +1,4 @@
-from canvasapi import *
+import canvasapi
 import config
 import Grouper
 import Grader

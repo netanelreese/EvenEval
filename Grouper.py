@@ -1,9 +1,9 @@
 from math import floor
 
-from canvasapi.group import GroupCategory
+import canvasapi
 
 import config
-from canvasapi import *
+import canvasapi
 import Grader
 
 class Grouper:
