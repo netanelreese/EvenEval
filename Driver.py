@@ -2,16 +2,12 @@ from canvasapi import *
 import config
 import Grouper
 import Grader
+import AssignmentCreator
 
 def main() :
-    grouper = Grouper.Grouper()
-    grouper.autogroup(2, config.GROUP_CATEGORY_ID, 2)
-    groups = config.COURSE.get_groups()
-    for group in groups:
-        print(group.name)
-        users = group.get_users()
-        for user in users:
-            print(user)
+
+    assignment = AssignmentCreator.AssignmentCreator()
+    assignment.createQuiz()
 
 
 if __name__ == "__main__":
