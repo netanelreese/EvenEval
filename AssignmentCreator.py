@@ -15,6 +15,16 @@ class AssignmentCreator:
                 ,{'answer_text':'Prefer not to say', 'weight':0.0}
                 ]
         })
+    def generateIndQuizzes(self):
+        users = config.COURSE.get_users(enrollment_type=['student'])
+        for user in users:
+            currName = user.name + ' Evaluation'
+            quiz = self.createQuiz(currName)
+            self.assignQuiz(quiz, user)
+
+    def assignQuiz(self, quiz, user):
+        return 1
+
 
 
 
