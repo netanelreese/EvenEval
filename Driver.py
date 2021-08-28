@@ -7,7 +7,7 @@ import AssignmentCreator
 def main() :
 
     assignment = AssignmentCreator.AssignmentCreator()
-    assignment.createQuiz()
+    assignment.generateIndQuizzes()
 
 
 if __name__ == "__main__":
