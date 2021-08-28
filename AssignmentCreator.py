@@ -1,9 +1,17 @@
+import canvasapi.quiz
+
 import config
 from canvasapi import *
 
 class AssignmentCreator:
-    def createQuiz (self, studentName):
-        quiz = config.COURSE.create_quiz({'title' : studentName})
+
+    def createQuiz (self, studentName, groupid):
+
+        quiz = config.COURSE.create_quiz({
+            'title' : studentName,
+            'assignment_group_id' : 1,
+            'for': [188153]
+        })
         quiz.create_question(question={
             'question_name': 'Gender',
             'question_type': 'multiple_choice_question',
@@ -15,15 +23,25 @@ class AssignmentCreator:
                 ,{'answer_text':'Prefer not to say', 'weight':0.0}
                 ]
         })
+        return quiz
     def generateIndQuizzes(self):
-        users = config.COURSE.get_users(enrollment_type=['student'])
-        for user in users:
-            currName = user.name + ' Evaluation'
-            quiz = self.createQuiz(currName)
-            self.assignQuiz(quiz, user)
 
-    def assignQuiz(self, quiz, user):
-        return 1
+        groups = config.COURSE.get_groups()
+        for group in groups:
+            users = group.get_users(enrollment_type=['student'])
+            for user in users:
+                currName = user.name + ' Evaluation'
+                quiz = self.createQuiz(currName, group.id)
+                #quiz.edit({'assignment_visibility':self.assignQuiz(quiz, user, group)})
+
+    def assignQuiz(self, quiz: canvasapi.quiz.Quiz, user, group):
+        users = group.get_users()
+        x = []
+        for others in users:
+            if (others.id != user.id):
+                x.append(user.id)
+        return x
+
 
 
 
