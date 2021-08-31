@@ -34,6 +34,12 @@ class AssignmentCreator:
                 currName = user.name + ' Evaluation'
                 quiz = self.createQuiz(currName, group.id)
                 module.create_module_item({'title':quiz.title,'type':'Quiz', 'content_id':quiz.id})
+                for other in users:
+                    if (user.id == other.id):
+                        x = user.id
+                        quiz.create_submission(submission={'user_id':x, 'excused':True})
+
+
                 #quiz.edit({'assignment_visibility':self.assignQuiz(quiz, user, group)})
 
     def assignQuiz(self, quiz: canvasapi.quiz.Quiz, user, group):
