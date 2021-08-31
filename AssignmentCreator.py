@@ -28,10 +28,12 @@ class AssignmentCreator:
 
         groups = config.COURSE.get_groups()
         for group in groups:
+            module = config.COURSE.create_module({'name':group.name})
             users = group.get_users(enrollment_type=['student'])
             for user in users:
                 currName = user.name + ' Evaluation'
                 quiz = self.createQuiz(currName, group.id)
+                module.create_module_item({'title':quiz.title,'type':'Quiz', 'content_id':quiz.id})
                 #quiz.edit({'assignment_visibility':self.assignQuiz(quiz, user, group)})
 
     def assignQuiz(self, quiz: canvasapi.quiz.Quiz, user, group):
