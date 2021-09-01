@@ -1,6 +1,9 @@
 import config
 import canvasapi
 import Grouper
+import nltk
+
+nltk.download()
 
 class APR :
     def create_assn(self):
@@ -21,4 +24,3 @@ class APR :
     def sentiment_analysis(self):
         print()
 
-    
