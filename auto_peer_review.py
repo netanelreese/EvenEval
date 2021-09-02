@@ -10,7 +10,7 @@ class APR :
             'peer_reviews': True,
         })
         self.generate_peer_reviews(assignment)
-
+        x=1
         print()
 
     def edit_reviewer_count(self):
