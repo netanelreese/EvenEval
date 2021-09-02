@@ -1,5 +1,5 @@
 import config
-from canvasapi import *
+import canvasapi
 import Grouper
 
 class Grader:
