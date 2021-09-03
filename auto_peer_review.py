@@ -4,15 +4,13 @@ import Grouper
 
 
 class APR :
-    def create_assn(self):
+    def create_assn(self, assignment_name):
         assignment = config.COURSE.create_assignment({
-            'name' : 'Peer Review 1',
+            'name': assignment_name,
             'peer_reviews': True,
-            'anonymous_peer_reviews':True
+            'anonymous_peer_reviews':True,
         })
         self.generate_peer_reviews(assignment)
-        x=1
-        print()
 
     def edit_reviewer_count(self):
         print()
@@ -30,7 +28,7 @@ class APR :
             for student1 in users:
                 for student2 in users:
                     if (student1.id != student2.id):
-                        peer_review = assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
+                        assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
 
     def sentiment_analysis(self):
         print()
