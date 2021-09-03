@@ -5,6 +5,7 @@ import config
 import Grouper
 import Grader
 import AssignmentCreator
+import sentiment_analysis
 
 def main() :
 
@@ -17,6 +18,6 @@ def main() :
     peer.create_assn(peer_review_name)
 
     #TODO: NLTK Tests
-
+    lang_processor = sentiment_analysis()
 if __name__ == "__main__":
     main()
