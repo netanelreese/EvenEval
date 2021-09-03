@@ -1,5 +1,7 @@
 import nltk
 from nltk import *
+from nltk.corpus import wordnet
+from nltk import PorterStemmer
 
 class sentiment_analysis():
 
