@@ -28,6 +28,7 @@ class APR :
             for student1 in users:
                 for student2 in users:
                     if (student1.id != student2.id):
+                        assignment.submit({'submission_type':'none', 'user_id':student1.id})
                         assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
 
     def sentiment_analysis(self):
