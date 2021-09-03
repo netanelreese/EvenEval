@@ -12,13 +12,15 @@ def main() :
 
     #TODO: Peer Review Tests
 
-    peer_review_number = input('Hello, what number peer review assignment is this?')
-    peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
+    #peer_review_number = input('Hello, what number peer review assignment is this?')
+    #peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
 
-    peer = auto_peer_review.APR()
-    peer.create_assn(peer_review_name)
+    #peer = auto_peer_review.APR()
+    #peer.create_assn(peer_review_name)
 
     #TODO: NLTK Tests
-    lang_processor = sentiment_analysis()
+    processor = sentiment_analysis.sentiment_analysis()
+    print(processor.test_features("Walking"))
+
 if __name__ == "__main__":
     main()
