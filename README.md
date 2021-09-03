@@ -1,4 +1,4 @@
-# EvenEval
+# EvenEval  [![CodeQL](https://github.com/netanelreese/EvenEval/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/netanelreese/EvenEval/actions/workflows/codeql-analysis.yml)
 **CANVAS LMS SOFTWARE PLUGIN**
 
 ### Vocabulary Used
