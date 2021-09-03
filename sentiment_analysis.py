@@ -1,7 +1,8 @@
 import nltk
+from nltk import *
 
 class sentiment_analysis():
-    nltk.download()
+
     def train(self):
         print()
 
@@ -10,3 +11,7 @@ class sentiment_analysis():
 
     def read_text(self):
         print()
+
+    def test_features(self, word):
+        stemmer = PorterStemmer()
+        stemmer.stem(word)
