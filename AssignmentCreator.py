@@ -16,7 +16,7 @@ class AssignmentCreator:
                 'student_ids' : [id]
             }]
         })
-        
+        config.COURSE.get_assignment(assignment.id).create_override({'student_ids':id})
         assignment.create_question(question = {
                 'question_name': 'Gender',
                 'question_type': 'multiple_choice_question',
