@@ -12,10 +12,10 @@ import config
 class sentiment_analysis():
 
     def test_vader(self):
-        sentences = ["VADER is smart, handsome, and funny.",  # positive sentence example
-                     "VADER is smart, handsome, and funny!",
+        sentences = ["Nick is an ass.",  # positive sentence example
+                     "Nate is smart, handsome, and funny!",
                      # punctuation emphasis handled correctly (sentiment intensity adjusted)
-                     "VADER is very smart, handsome, and funny.",
+                     "Sugma balls bitch.",
                      # booster words handled correctly (sentiment intensity adjusted)
                      "VADER is VERY SMART, handsome, and FUNNY.",  # emphasis for ALLCAPS handled
                      "VADER is VERY SMART, handsome, and FUNNY!!!",
