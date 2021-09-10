@@ -22,5 +22,8 @@ def main() :
     processor = sentiment_analysis.sentiment_analysis()
     print(processor.test_features("Walking"))
 
+    darth_vader = sentiment_analysis.sentiment_analysis()
+    darth_vader.test_vader();
+
 if __name__ == "__main__":
     main()
