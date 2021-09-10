@@ -20,6 +20,8 @@ def main() :
 
     #TODO: NLTK Tests
     processor = sentiment_analysis.sentiment_analysis()
+    text = 'Hey, Nick is great'
+    processor.getSubmissions(1683070)
     print(processor.test_features("Walking"))
 
 if __name__ == "__main__":

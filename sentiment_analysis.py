@@ -17,9 +17,6 @@ class sentiment_analysis():
             num_reviews = 0
             for peer_review in peer_reviews:
                 num_reviews = num_reviews+1
-                
-
-
 
     def train(self):
         print()
