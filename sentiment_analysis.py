@@ -56,7 +56,7 @@ class sentiment_analysis():
                 average_compound = compound_sum / num_reviews
                 grade_1 = self.grade(average_compound)
             else:
-                grade_1 = 5
+                grade_1 = 0
             x = assignment.get_submission(user).edit(submission = {
                 'posted_grade':grade_1})
 
