@@ -10,7 +10,12 @@ class APR :
             'peer_reviews': True,
             'anonymous_peer_reviews':True,
             'submission_types':'none',
-            'points_possible':10
+            'points_possible':10,
+            'description':'<p>For this assignment test, I want you to write something really positive in the peer '
+                          'review. <br> This can include: <ul> <li>"Great work."</li> <li> "He is the BEST."</li> </ul> <br> The '
+                          'analysis takes all caps into consideration so use them for emphasis. Please write at least '
+                          'a couple of sentences about how great something is. We are trying to see if the code can '
+                          'make a good positive analysis and assign the grade accordingly.'
         })
         self.generate_peer_reviews(assignment)
 
