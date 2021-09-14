@@ -12,11 +12,8 @@ import config
 class sentiment_analysis():
 
     def test_vader(self):
-        sentences = ["Nick is an ass.",  # positive sentence example
-                     "Nate is smart, handsome, and funny!",
+        sentences = ["Nate is smart, handsome, and funny!",
                      # punctuation emphasis handled correctly (sentiment intensity adjusted)
-                     "Sugma balls bitch.",
-                     # booster words handled correctly (sentiment intensity adjusted)
                      "VADER is VERY SMART, handsome, and FUNNY.",  # emphasis for ALLCAPS handled
                      "VADER is VERY SMART, handsome, and FUNNY!!!",
                      # combination of signals - VADER appropriately adjusts intensity
@@ -46,15 +43,21 @@ class sentiment_analysis():
         assignment = config.COURSE.get_assignment(assignmentID)
         users = config.COURSE.get_users(enrollment_type=['student'])
         for user in users:
-            peer_reviews = assignment.get_submission(user).get_submission_peer_reviews()
+            peer_reviews = assignment.get_submission(user).get_submission_peer_reviews(include='submission_comments')
             num_reviews = 0
             compound_sum = 0
             for peer_review in peer_reviews:
-                num_reviews = num_reviews+1
-                compound_sum = compound_sum + self.analyze(peer_review)
-            average_compound = compound_sum / num_reviews
-            grade = self.grade(average_compound)
-            assignment.get_submission(user).edit(grade=grade)
+                if peer_review.workflow_state == 'completed':
+                    num_reviews = num_reviews + 1
+                    compound_sum = compound_sum + self.analyze(peer_review.submission_comments[0])
+                else:
+                    print('Peer Review not completed')
+            if (num_reviews != 0):
+                average_compound = compound_sum / num_reviews
+                grade_1 = self.grade(average_compound)
+            else:
+                grade_1 = 0
+            x = assignment.get_submission(user).edit(grade = grade_1)
 
 
     def train(self):
