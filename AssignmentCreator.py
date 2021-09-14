@@ -4,7 +4,6 @@ import config
 from canvasapi import *
 
 class AssignmentCreator:
-    y = 7
 
     def createQuiz (self, studentName, id):
 

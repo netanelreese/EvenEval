@@ -76,7 +76,3 @@ class sentiment_analysis():
             return 1
         else:
             return 4
-
-    def test_features(self, word):
-        stemmer = PorterStemmer()
-        stemmer.stem(word)
