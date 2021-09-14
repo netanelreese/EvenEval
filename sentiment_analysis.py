@@ -48,11 +48,11 @@ class sentiment_analysis():
         for user in users:
             peer_reviews = assignment.get_submission(user).get_submission_peer_reviews()
             num_reviews = 0
-            compoundSum = 0;
+            compound_sum = 0
             for peer_review in peer_reviews:
                 num_reviews = num_reviews+1
-                compoundSum = compoundSum + self.analyze(peer_review)
-            average_compound = compoundSum / num_reviews
+                compound_sum = compound_sum + self.analyze(peer_review)
+            average_compound = compound_sum / num_reviews
             grade = self.grade(average_compound)
             assignment.get_submission(user).edit(grade=grade)
 
@@ -66,9 +66,9 @@ class sentiment_analysis():
         return x[3]
 
     def grade(self, average_compound):
-        if (average_compound > 0.05):
+        if average_compound > 0.05:
             return 10
-        elif (average_compound < 0.05):
+        elif average_compound < 0.05:
             return 1
         else:
             return 4
