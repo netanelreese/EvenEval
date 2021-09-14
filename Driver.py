@@ -9,23 +9,21 @@ import sentiment_analysis
 
 def main() :
 
+    x = input('Press A for creating assignment and B for grading peer reviews')
 
     #TODO: Peer Review Tests
+    if (x == 'A'):
+        peer_review_number = input('Hello, what number peer review assignment is this?')
+        peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
 
-    peer_review_number = input('Hello, what number peer review assignment is this?')
-    peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
-
-    peer = auto_peer_review.APR()
-    peer.create_assn(peer_review_name)
+        peer = auto_peer_review.APR()
+        peer.create_assn(peer_review_name)
 
     #TODO: NLTK Tests
-    processor = sentiment_analysis.sentiment_analysis()
-    text = 'Hey, Nick is great'
-    processor.getSubmissions(1690228)
-    print(processor.test_features("Walking"))
-
-    darth_vader = sentiment_analysis.sentiment_analysis()
-    darth_vader.test_vader();
+    if (x == 'B'):
+        assignment_id = input('What is the assignment id?')
+        processor = sentiment_analysis.sentiment_analysis()
+        processor.getSubmissions(assignment_id)
 
 if __name__ == "__main__":
     main()
