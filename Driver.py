@@ -12,16 +12,16 @@ def main() :
 
     #TODO: Peer Review Tests
 
-    #peer_review_number = input('Hello, what number peer review assignment is this?')
-    #peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
+    peer_review_number = input('Hello, what number peer review assignment is this?')
+    peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
 
-    #peer = auto_peer_review.APR()
-    #peer.create_assn(peer_review_name)
+    peer = auto_peer_review.APR()
+    peer.create_assn(peer_review_name)
 
     #TODO: NLTK Tests
     processor = sentiment_analysis.sentiment_analysis()
     text = 'Hey, Nick is great'
-    processor.getSubmissions(1683070)
+    processor.getSubmissions(1690228)
     print(processor.test_features("Walking"))
 
     darth_vader = sentiment_analysis.sentiment_analysis()
