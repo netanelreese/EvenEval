@@ -15,9 +15,10 @@ def main() :
     if (x == 'A'):
         peer_review_number = input('Hello, what number peer review assignment is this?')
         peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
+        pos_neg = input('Positive or Negative Test')
 
         peer = auto_peer_review.APR()
-        peer.create_assn(peer_review_name)
+        peer.create_assn(peer_review_name, pos_neg)
 
     #TODO: NLTK Tests
     if (x == 'B'):
