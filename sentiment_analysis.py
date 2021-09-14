@@ -48,18 +48,30 @@ class sentiment_analysis():
         for user in users:
             peer_reviews = assignment.get_submission(user).get_submission_peer_reviews()
             num_reviews = 0
+            compoundSum = 0;
             for peer_review in peer_reviews:
                 num_reviews = num_reviews+1
+                compoundSum = compoundSum + self.analyze(peer_review)
+            average_compound = compoundSum / num_reviews
+            grade = self.grade(average_compound)
+            assignment.get_submission(user).edit(grade=grade)
+
 
     def train(self):
         print()
 
     def analyze(self, text):
         sia = SentimentIntensityAnalyzer()
-        sia.polarity_scores(text)
+        x = sia.polarity_scores(text)
+        return x[3]
 
-    def read_text(self):
-        print()
+    def grade(self, average_compound):
+        if (average_compound > 0.05):
+            return 10
+        elif (average_compound < 0.05):
+            return 1
+        else:
+            return 4
 
     def test_features(self, word):
         stemmer = PorterStemmer()
