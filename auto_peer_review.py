@@ -10,7 +10,6 @@ class APR :
             'peer_reviews': True,
             'anonymous_peer_reviews':True,
             'submission_types':'none',
-            'grading_type':'points',
             'points_possible':10
         })
         self.generate_peer_reviews(assignment)
@@ -32,8 +31,7 @@ class APR :
                 for student2 in users:
                     if (student1.id != student2.id):
                         #assignment.submit({'submission_type':'none', 'user_id':student1.id})
-                        submission1 = assignment.get_submission(student1.id)
-                        submission1.create_submission_peer_review(student2.id)
+                        assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
 
     def sentiment_analysis(self):
         print()
