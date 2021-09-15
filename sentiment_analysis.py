@@ -74,7 +74,7 @@ class sentiment_analysis():
     def grade(self, average_compound):
         if average_compound > 0.05:
             return 10
-        elif average_compound < 0.05:
+        elif average_compound < -0.05:
             return 1
         else:
             return 4
