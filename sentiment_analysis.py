@@ -49,7 +49,7 @@ class sentiment_analysis():
             for peer_review in peer_reviews:
                 if peer_review.workflow_state == 'completed':
                     num_reviews = num_reviews + 1
-                    compound_sum = compound_sum + self.analyze(peer_review.submission_comments[0])
+                    compound_sum = compound_sum + self.analyze(peer_review.submission_comments[0]['comment'])
                 else:
                     print('Peer Review not completed')
             if (num_reviews != 0):
@@ -67,7 +67,9 @@ class sentiment_analysis():
     def analyze(self, text):
         sia = SentimentIntensityAnalyzer()
         x = sia.polarity_scores(text)
-        return x[3]
+        if (x['compound']<-.05):
+            "Someone got a bad review :("
+        return x['compound']
 
     def grade(self, average_compound):
         if average_compound > 0.05:
