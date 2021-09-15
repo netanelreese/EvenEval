@@ -2,7 +2,7 @@ import nltk
 from nltk import *
 from nltk.corpus import wordnet
 from nltk import PorterStemmer
-from nltk.sentiment import SentimentIntensityAnalyzer
+#from nltk.sentiment import SentimentIntensityAnalyzer
 # TODO: Vader Shit
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
@@ -66,11 +66,20 @@ class sentiment_analysis():
 
     def analyze(self, text):
         sia = SentimentIntensityAnalyzer()
-        x = sia.polarity_scores(text)
-        if (x['compound']<-.05):
+        y = text.split('.')
+        z = 0
+        w = 0
+        for sentence in y:
+            z =z +1
+            x = sia.polarity_scores(sentence)
+            w = w + x['compound']
+            print (w)
+
+        result = w/z
+        if (result<-0.05):
             print("Someone got a bad review :(")
-            print(x)
-        return x['compound']
+            print(result)
+        return result
 
     def grade(self, average_compound):
         if average_compound > 0.05:
