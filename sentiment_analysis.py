@@ -39,16 +39,13 @@ class sentiment_analysis():
                 'posted_grade':grade_1})
 
 
-    def train(self):
-        print()
-
     def analyze(self, text):
         sia = SentimentIntensityAnalyzer()
         y = text.split('.')
         z = 0
         w = 0
         for sentence in y:
-            z =z +1
+            z = z + 1
             x = sia.polarity_scores(sentence)
             w = w + x['compound']
             print (w)
