@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.*;
@@ -223,8 +224,15 @@ public class App extends JFrame implements ActionListener {
 
 	private class ReviewClickListener implements ActionListener{
 	      public void actionPerformed(ActionEvent e) {
-	    	  String action = e.getActionCommand();
-	    	  System.out.println(reviewNum+assnIDNum);
+	    	String action = e.getActionCommand();
+	  		ProcessBuilder processBuilder = new ProcessBuilder("python", "Driver.py");
+		    processBuilder.inheritIO();
+			try {
+				Process p = processBuilder.start();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 	    	 
 	      }		
 	   }
