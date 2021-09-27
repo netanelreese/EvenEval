@@ -140,7 +140,7 @@ public class App extends JFrame implements ActionListener {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						try {
-							BufferedWriter out = new BufferedWriter(new FileWriter("config.txt"));
+							BufferedWriter out = new BufferedWriter(new FileWriter("config.toml"));
 							out.write(apiString);
 							out.write("\n");
 							out.write(urlString);
@@ -348,7 +348,7 @@ public class App extends JFrame implements ActionListener {
 	    	String action = e.getActionCommand();
 	    	
 	    	try {
-				BufferedWriter out = new BufferedWriter(new FileWriter("A.txt"));
+				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.txt"));
 				
 		    	if(action.equals("cr")) {
 		    		out.write("A\n");
