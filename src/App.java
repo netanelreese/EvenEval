@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
@@ -226,10 +227,17 @@ public class App extends JFrame implements ActionListener {
 	      public void actionPerformed(ActionEvent e) {
 	    	String action = e.getActionCommand();
 	  		ProcessBuilder processBuilder = new ProcessBuilder("python", "Driver.py");
+	  		processBuilder.command("echo", "A");
 		    processBuilder.inheritIO();
 			try {
 				Process p = processBuilder.start();
+				TimeUnit.SECONDS.sleep(3);
+				
+				
 			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
