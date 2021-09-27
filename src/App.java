@@ -40,6 +40,7 @@ public class App extends JFrame implements ActionListener {
 	private JLabel company = new JLabel("/src/");
 	private Font labelFont = new Font("Sans Serif", Font.BOLD, 25);
 	private Color cream = new Color(255, 241, 208);	
+	private Color crimson = new Color(132, 22, 23);
 	
 	
 	public void launch() throws FileNotFoundException {
@@ -167,7 +168,7 @@ public class App extends JFrame implements ActionListener {
 		setPreferredSize(new Dimension(400, 400));
 	    setLayout(new GridBagLayout());
 	    GridBagConstraints positionConst = new GridBagConstraints();
-		getContentPane().setBackground( new Color(132, 22, 23));
+		getContentPane().setBackground(crimson);
 		
 		title.setFont(labelFont);
 		title.setForeground(cream);
@@ -232,6 +233,7 @@ public class App extends JFrame implements ActionListener {
 		            
 		            JLabel enterID = new JLabel(enterAssnID);
 		            JButton ok = new JButton("OK");
+		            ok.setBackground(cream);
 		            JTextField assnID = new JTextField();
 		            assnID.setEditable(true);
 		            assnID.setPreferredSize(new Dimension(200, 35));
@@ -243,7 +245,7 @@ public class App extends JFrame implements ActionListener {
 		    		popup.setPreferredSize(new Dimension(400, 400));
 		    	    popup.setLayout(new GridBagLayout());
 		    	    GridBagConstraints popupPositionConst = new GridBagConstraints();
-		    		popup.getContentPane().setBackground( new Color(132, 22, 23));
+		    		popup.getContentPane().setBackground(crimson);
 		    		
 		    		
 		    		enterID.setForeground(cream);
@@ -286,6 +288,7 @@ public class App extends JFrame implements ActionListener {
 		            
 		            JLabel peerReviewOps = new JLabel("Enter Peer Review Options");
 		            JButton ok = new JButton("OK");
+		            ok.setBackground(cream);
 		            JLabel peerReview = new JLabel("Enter Peer Review Num");
 		            JTextField peerReviewTitle = new JTextField();
 		            peerReviewTitle.setEditable(true);
@@ -297,7 +300,7 @@ public class App extends JFrame implements ActionListener {
 		    		popup.setPreferredSize(new Dimension(600, 400));
 		    	    popup.setLayout(new GridBagLayout());
 		    	    GridBagConstraints popupPositionConst = new GridBagConstraints();
-		    		popup.getContentPane().setBackground( new Color(132, 22, 23));
+		    		popup.getContentPane().setBackground(crimson);
 		    		
 		    		
 		    		peerReviewOps.setForeground(cream);
