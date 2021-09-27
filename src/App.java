@@ -33,6 +33,9 @@ public class App extends JFrame implements ActionListener {
 	 */
 	String reviewNum;
 	String assnIDNum;
+	String apiString;
+	String urlString;
+	String courseString;
 	private static final long serialVersionUID = 1L;
 	JButton createAssn;
 	JLabel selectOption = new JLabel("Please select an option below:");
@@ -46,10 +49,117 @@ public class App extends JFrame implements ActionListener {
 	
 	public void launch() throws FileNotFoundException {
 		setTitle("EvenEval");
+
+		JMenuBar bar = new JMenuBar();
+		setJMenuBar(bar);
 		
+		JMenu n = new JMenu("Settings");
+		bar.add(n);
+		JMenuItem cSet = new JMenuItem("Canvas Settings");
+		n.add(cSet);
+		cSet.addActionListener(new ActionListener() {
 
-	    
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFrame settings = new JFrame("Settings");
+				settings.setPreferredSize(new Dimension(400, 250));
+				JLabel apiKey = new JLabel("Canvas API Key:");
+				JLabel apiUrl = new JLabel("Canvas API URL:");
+				JLabel courseID = new JLabel("Course ID:");
+				JTextField keyField = new JTextField();
+				JTextField urlField = new JTextField();
+				JTextField courseField = new JTextField();
+				JButton ok = new JButton("OK");
+				
+			    settings.setLayout(new GridBagLayout());
+			    GridBagConstraints settingsPositionConst = new GridBagConstraints();
+				
+			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
+			    settingsPositionConst.gridx = 0;
+			    settingsPositionConst.gridy = 0;
+			    settings.add(apiKey, settingsPositionConst);
+			    
+			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
+			    settingsPositionConst.gridx = 1;
+			    settingsPositionConst.gridy = 0;
+			    keyField.setPreferredSize(new Dimension(200, 35));
+			    settings.add(keyField, settingsPositionConst);
+			    
+			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
+			    settingsPositionConst.gridx = 0;
+			    settingsPositionConst.gridy = 1;
+			    settings.add(apiUrl, settingsPositionConst);
+			    
+			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
+			    settingsPositionConst.gridx = 1;
+			    settingsPositionConst.gridy = 1;
+			    urlField.setPreferredSize(new Dimension(200, 35));
+			    settings.add(urlField, settingsPositionConst);
+			    
+			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
+			    settingsPositionConst.gridx = 0;
+			    settingsPositionConst.gridy = 2;
+			    settings.add(courseID, settingsPositionConst);
+			    
+			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
+			    settingsPositionConst.gridx = 1;
+			    settingsPositionConst.gridy = 2;
+			    courseField.setPreferredSize(new Dimension(200, 35));
+			    settings.add(courseField, settingsPositionConst);
+			    
+			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
+			    settingsPositionConst.gridx = 0;
+			    settingsPositionConst.gridy = 3;
+			    settings.add(ok, settingsPositionConst);
+			    
+			    settings.pack();
+			    
+			    keyField.addActionListener(new ActionListener() {
+	    	    	  public void actionPerformed(ActionEvent event) {
+	    	    		  apiString = keyField.getText();
+	    	    	  }
+	    	    	});
+			    
+			    urlField.addActionListener(new ActionListener() {
+	    	    	  public void actionPerformed(ActionEvent event) {
+	    	    		  urlString = urlField.getText();
+	    	    	  }
+	    	    	});
+			    
+			    courseField.addActionListener(new ActionListener() {
+	    	    	  public void actionPerformed(ActionEvent event) {
+	    	    		  courseString = courseField.getText();
+	    	    	  }
+	    	    	});
+			    
+			    settings.setVisible(true);
+			    
+			    ok.addActionListener(new ActionListener() {
 
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							BufferedWriter out = new BufferedWriter(new FileWriter("config.txt"));
+							out.write(apiString);
+							out.write("\n");
+							out.write(urlString);
+							out.write("\n");
+							out.write(courseString);
+							
+							out.close();
+							
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+					}
+			    	
+			    });
+			    
+			}
+		});
 		
 		createAssn = new JButton("Create an Assignment");
 		gradeAssn = new JButton("Grade an Assignment");
@@ -182,7 +292,6 @@ public class App extends JFrame implements ActionListener {
 		            
 		            
 		            popup.setVisible(true);
-		            popup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		            
 		    		popup.setPreferredSize(new Dimension(600, 400));
 		    	    popup.setLayout(new GridBagLayout());
