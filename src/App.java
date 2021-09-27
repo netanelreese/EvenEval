@@ -237,9 +237,6 @@ public class App extends JFrame implements ActionListener {
 			try {
 				Process p = processBuilder.start();
 				TimeUnit.SECONDS.sleep(3);
-				InputStream input = new FileInputStream("A.txt");
-				input.read();
-				input.close();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
