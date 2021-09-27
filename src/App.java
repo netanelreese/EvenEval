@@ -225,6 +225,7 @@ public class App extends JFrame implements ActionListener {
 	      public void actionPerformed(ActionEvent e) {
 	    	  String action = e.getActionCommand();
 	    	  System.out.println(reviewNum+assnIDNum);
+	    	 
 	      }		
 	   }
 	
