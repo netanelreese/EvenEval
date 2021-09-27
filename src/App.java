@@ -6,7 +6,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
@@ -34,12 +38,14 @@ public class App extends JFrame implements ActionListener {
 	JLabel title = new JLabel("EvenEval");
 	JLabel company = new JLabel("/src/");
 	Font labelFont = new Font("Comic Sans", Font.BOLD, 25);
-	Color cream = new Color(255, 241, 208);
+	Color cream = new Color(255, 241, 208);	
 	
 	
-	public void launch() {
+	public void launch() throws FileNotFoundException {
 		setTitle("EvenEval");
 		
+
+	    
 
 		
 		createAssn = new JButton("Create an Assignment");
@@ -227,13 +233,14 @@ public class App extends JFrame implements ActionListener {
 	      public void actionPerformed(ActionEvent e) {
 	    	String action = e.getActionCommand();
 	  		ProcessBuilder processBuilder = new ProcessBuilder("python", "Driver.py");
-	  		processBuilder.command("echo", "A");
-		    processBuilder.inheritIO();
+	  		processBuilder.inheritIO();
 			try {
+				InputStream input = new FileInputStream("A.txt");		
+			    byte[] array = new byte[100];
 				Process p = processBuilder.start();
 				TimeUnit.SECONDS.sleep(3);
-				
-				
+				processBuilder.command("cmd", "echo A");
+				p = processBuilder.start();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
