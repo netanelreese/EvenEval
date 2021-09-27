@@ -45,8 +45,6 @@ public class App extends JFrame implements ActionListener {
 	    GridBagConstraints positionConst = new GridBagConstraints();
 		getContentPane().setBackground( new Color(132, 22, 23));
 		
-
-		
 		title.setFont(labelFont);
 		title.setForeground(cream);
 		
@@ -105,7 +103,7 @@ public class App extends JFrame implements ActionListener {
 	         String enterAssnID = "Enter Assignment ID";
 	         
 	         if( command.equals( "Grade an Assignment" ))  {
-		        	
+		        	String id = "";
 		            JFrame popup = new JFrame("Enter Assignment ID");
 		            
 		            JLabel enterID = new JLabel(enterAssnID);
@@ -126,6 +124,7 @@ public class App extends JFrame implements ActionListener {
 		    		
 		    		enterID.setForeground(cream);
 		    		Font labelFont = new Font("Comic Sans", Font.BOLD, 14);
+		    		enterID.setFont(labelFont);
 		    		
 		    		popupPositionConst.insets = new Insets(5, 5, 5, 5);
 		    		popupPositionConst.gridx = 0;
@@ -142,14 +141,88 @@ public class App extends JFrame implements ActionListener {
 		    		popupPositionConst.gridy = 2;
 		    	    popup.add(ok, popupPositionConst);
 		    	    
+		    	    assnID.addActionListener(new java.awt.event.ActionListener() {
+		    	    	  public void actionPerformed(ActionEvent event) {
+		  		    	    ok.setActionCommand(assnID.getText());
+		    	    	  }
+		    	    	});
+		    	    
+
+		    	    
+		    	    ok.addActionListener(new ReviewClickListener());
+		    	    
 		    	    popup.pack();
 	         } 
 	         else if(command.contains( "Create" ) )  {
-	            System.out.println("Create");
+	        	 	final String reviewNum = "";
+		            JFrame popup = new JFrame("Enter Assignment ID");
+		            
+		            JLabel peerReviewOps = new JLabel("Enter Peer Review Options");
+		            JButton ok = new JButton("OK");
+		            JLabel peerReview = new JLabel("Enter Peer Review Num");
+		            JTextField peerReviewTitle = new JTextField();
+		            peerReviewTitle.setEditable(true);
+		            peerReviewTitle.setPreferredSize(new Dimension(200, 35));
+		            
+		            
+		            popup.setVisible(true);
+		            popup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		            
+		    		popup.setPreferredSize(new Dimension(600, 400));
+		    	    popup.setLayout(new GridBagLayout());
+		    	    GridBagConstraints popupPositionConst = new GridBagConstraints();
+		    		popup.getContentPane().setBackground( new Color(132, 22, 23));
+		    		
+		    		
+		    		peerReviewOps.setForeground(cream);
+		    		Font labelFont = new Font("Comic Sans", Font.BOLD, 14);
+		    		peerReviewOps.setFont(labelFont);
+		    		
+		    		peerReview.setForeground(cream);
+		    		Font reviewFont = new Font("Comic Sans",Font.PLAIN, 12);
+		    		peerReview.setFont(reviewFont);
+		    		
+		    		popupPositionConst.insets = new Insets(5, 5, 5, 5);
+		    		popupPositionConst.gridx = 0;
+		    	    popupPositionConst.gridy = 0;
+		    	    popup.add(peerReviewOps, popupPositionConst);
+		    	    
+		    		popupPositionConst.insets = new Insets(5, 5, 5, 5);
+		    		popupPositionConst.gridx = 0;
+		    	    popupPositionConst.gridy = 1;
+		    	    popup.add(peerReview, popupPositionConst);
+		    	    
+		    		popupPositionConst.insets = new Insets(5, 5, 5, 5);
+		    		popupPositionConst.gridx = 1;
+		    	    popupPositionConst.gridy = 1;
+		    	    popup.add(peerReviewTitle, popupPositionConst);
+		    	    
+		    	    popupPositionConst.insets = new Insets(5, 5, 5, 5);
+		    		popupPositionConst.gridx = 0;
+		    		popupPositionConst.gridy = 2;
+		    	    popup.add(ok, popupPositionConst);
+		    	    
+		    	    peerReviewTitle.addActionListener(new ActionListener() {
+		    	    	  public void actionPerformed(ActionEvent event) {
+		    	    		  ok.setActionCommand(peerReviewTitle.getText());
+		    	    	  }
+		    	    	});
+		    	    
+		    	    ok.addActionListener(new ReviewClickListener());
+		    	    
+		    	    popup.pack();
 	         }
 	      }		
 	   }
 
+	private class ReviewClickListener implements ActionListener{
+	      public void actionPerformed(ActionEvent e) {
+	    	  String action = e.getActionCommand();
+	    	  
+	    	  System.out.println(action);
+	      }		
+	   }
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
