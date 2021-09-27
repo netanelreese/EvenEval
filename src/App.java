@@ -235,12 +235,11 @@ public class App extends JFrame implements ActionListener {
 	  		ProcessBuilder processBuilder = new ProcessBuilder("python", "Driver.py");
 	  		processBuilder.inheritIO();
 			try {
-				InputStream input = new FileInputStream("A.txt");		
-			    byte[] array = new byte[100];
 				Process p = processBuilder.start();
 				TimeUnit.SECONDS.sleep(3);
-				processBuilder.command("cmd", "echo A");
-				p = processBuilder.start();
+				InputStream input = new FileInputStream("A.txt");
+				input.read();
+				input.close();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
