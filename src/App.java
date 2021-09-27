@@ -22,6 +22,8 @@ public class App extends JFrame implements ActionListener {
 	/**
 	 * 
 	 */
+	String reviewNum;
+	String assnIDNum;
 	private static final long serialVersionUID = 1L;
 	JButton createAssn;
 	JLabel selectOption = new JLabel("Please select an option below:");
@@ -114,7 +116,7 @@ public class App extends JFrame implements ActionListener {
 		            
 		            
 		            popup.setVisible(true);
-		            popup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		            popup.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		            
 		    		popup.setPreferredSize(new Dimension(400, 400));
 		    	    popup.setLayout(new GridBagLayout());
@@ -141,20 +143,22 @@ public class App extends JFrame implements ActionListener {
 		    		popupPositionConst.gridy = 2;
 		    	    popup.add(ok, popupPositionConst);
 		    	    
-		    	    assnID.addActionListener(new java.awt.event.ActionListener() {
+		    	    assnID.addActionListener(new ActionListener() {
 		    	    	  public void actionPerformed(ActionEvent event) {
-		  		    	    ok.setActionCommand(assnID.getText());
+		    	    		 ok.setActionCommand(assnID.getText());
+		    	    		 assnIDNum = assnID.getText();
 		    	    	  }
 		    	    	});
 		    	    
-
+		    	    assnIDNum = assnID.getText();
+		    	    System.out.println(assnIDNum);
 		    	    
 		    	    ok.addActionListener(new ReviewClickListener());
 		    	    
 		    	    popup.pack();
 	         } 
 	         else if(command.contains( "Create" ) )  {
-	        	 	final String reviewNum = "";
+	        	 	
 		            JFrame popup = new JFrame("Enter Assignment ID");
 		            
 		            JLabel peerReviewOps = new JLabel("Enter Peer Review Options");
@@ -205,11 +209,13 @@ public class App extends JFrame implements ActionListener {
 		    	    peerReviewTitle.addActionListener(new ActionListener() {
 		    	    	  public void actionPerformed(ActionEvent event) {
 		    	    		  ok.setActionCommand(peerReviewTitle.getText());
+		    	    		  reviewNum = peerReviewTitle.getText();
 		    	    	  }
 		    	    	});
 		    	    
 		    	    ok.addActionListener(new ReviewClickListener());
-		    	    
+		    	    reviewNum = peerReviewTitle.getText();
+		    	    System.out.println(reviewNum);
 		    	    popup.pack();
 	         }
 	      }		
@@ -218,8 +224,7 @@ public class App extends JFrame implements ActionListener {
 	private class ReviewClickListener implements ActionListener{
 	      public void actionPerformed(ActionEvent e) {
 	    	  String action = e.getActionCommand();
-	    	  
-	    	  System.out.println(action);
+	    	  System.out.println(reviewNum+assnIDNum);
 	      }		
 	   }
 	
