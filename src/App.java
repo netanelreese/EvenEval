@@ -26,20 +26,20 @@ public class App extends JFrame implements ActionListener {
 	/**
 	 * 
 	 */
-	String reviewNum;
-	String assnIDNum;
-	String apiString;
-	String urlString;
-	String courseString;
+	private String reviewNum;
+	private String assnIDNum;
+	private String apiString;
+	private String urlString;
+	private String courseString;
 	private static final long serialVersionUID = 1L;
-	JButton createAssn;
-	JLabel selectOption = new JLabel("Please select an option below:");
-	JButton gradeAssn;
-	JTextField assnID;
-	JLabel title = new JLabel("EvenEval");
-	JLabel company = new JLabel("/src/");
-	Font labelFont = new Font("Comic Sans", Font.BOLD, 25);
-	Color cream = new Color(255, 241, 208);	
+	private JButton createAssn;
+	private JLabel selectOption = new JLabel("Please select an option below:");
+	private JButton gradeAssn;
+	private JTextField assnID;
+	private JLabel title = new JLabel("EvenEval");
+	private JLabel company = new JLabel("/src/");
+	private Font labelFont = new Font("Sans Serif", Font.BOLD, 25);
+	private Color cream = new Color(255, 241, 208);	
 	
 	
 	public void launch() throws FileNotFoundException {
@@ -55,7 +55,7 @@ public class App extends JFrame implements ActionListener {
 		cSet.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //creating frame for settings menu
 				// TODO Auto-generated method stub
 				JFrame settings = new JFrame("Settings");
 				settings.setPreferredSize(new Dimension(400, 250));
@@ -66,6 +66,7 @@ public class App extends JFrame implements ActionListener {
 				JTextField urlField = new JTextField();
 				JTextField courseField = new JTextField();
 				JButton ok = new JButton("OK");
+				
 				
 			    settings.setLayout(new GridBagLayout());
 			    GridBagConstraints settingsPositionConst = new GridBagConstraints();
@@ -155,9 +156,14 @@ public class App extends JFrame implements ActionListener {
 			    
 			}
 		});
-		
-		createAssn = new JButton("Create an Assignment");
+		/**
+		 * Creating JFrame for base applet
+		 */
+		createAssn = new JButton("Create an Assignment"); 
 		gradeAssn = new JButton("Grade an Assignment");
+		createAssn.setBackground(cream);
+		gradeAssn.setBackground(cream);
+		
 		setPreferredSize(new Dimension(400, 400));
 	    setLayout(new GridBagLayout());
 	    GridBagConstraints positionConst = new GridBagConstraints();
@@ -215,7 +221,7 @@ public class App extends JFrame implements ActionListener {
 		pack();
 	}
 	
-	private class ButtonClickListener implements ActionListener{
+	private class ButtonClickListener implements ActionListener{ //creating the popups that take input and write to pyinp.txt
 	      public void actionPerformed(ActionEvent e) {
 	         String command = e.getActionCommand();
 	         String enterAssnID = "Enter Assignment ID";
@@ -346,11 +352,11 @@ public class App extends JFrame implements ActionListener {
 				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.txt"));
 				
 		    	if(action.equals("cr")) {
-		    		out.write("A\n");
+		    		out.write("A\n"); //writing that we wanna create the assignment with the number inputted
 		    		out.write(reviewNum);
 		    	}
 		    	else if(action.equals("gr")) {
-		    		out.write("B\n");
+		    		out.write("B\n"); //writing to pyinp that we wanna grade assignment with input assingment id
 		    		out.write(assnIDNum);
 		    	}
 		    	out.close();
@@ -359,14 +365,12 @@ public class App extends JFrame implements ActionListener {
 				e2.printStackTrace();
 			}
 	    	
-
+	    	//start new shell instance running python with Driver as the arg
 	  		ProcessBuilder processBuilder = new ProcessBuilder("python", "Driver.py");
 	  		processBuilder.inheritIO();
 	  		
-	  		
-	  		
 			try {
-				Process p = processBuilder.start();
+				Process p = processBuilder.start(); //starting the instance
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
