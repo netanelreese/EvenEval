@@ -6,11 +6,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ProcessBuilder.Redirect;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
@@ -153,10 +156,11 @@ public class App extends JFrame implements ActionListener {
 		    	    
 		    	    assnID.addActionListener(new ActionListener() {
 		    	    	  public void actionPerformed(ActionEvent event) {
-		    	    		 ok.setActionCommand(assnID.getText());
 		    	    		 assnIDNum = assnID.getText();
 		    	    	  }
 		    	    	});
+		    	    
+		    	    ok.setActionCommand("gr");
 		    	    
 		    	    assnIDNum = assnID.getText();
 		    	    System.out.println(assnIDNum);
@@ -216,10 +220,11 @@ public class App extends JFrame implements ActionListener {
 		    	    
 		    	    peerReviewTitle.addActionListener(new ActionListener() {
 		    	    	  public void actionPerformed(ActionEvent event) {
-		    	    		  ok.setActionCommand(peerReviewTitle.getText());
 		    	    		  reviewNum = peerReviewTitle.getText();
 		    	    	  }
 		    	    	});
+		    	    
+		    	    ok.setActionCommand("cr");
 		    	    
 		    	    ok.addActionListener(new ReviewClickListener());
 		    	    reviewNum = peerReviewTitle.getText();
@@ -232,22 +237,40 @@ public class App extends JFrame implements ActionListener {
 	private class ReviewClickListener implements ActionListener{
 	      public void actionPerformed(ActionEvent e) {
 	    	String action = e.getActionCommand();
+	    	
+	    	try {
+				BufferedWriter out = new BufferedWriter(new FileWriter("A.txt"));
+				
+		    	if(action.equals("cr")) {
+		    		out.write("A\n");
+		    		out.write(reviewNum);
+		    	}
+		    	else if(action.equals("gr")) {
+		    		out.write("B\n");
+		    		out.write(assnIDNum);
+		    	}
+		    	out.close();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+	    	
+
 	  		ProcessBuilder processBuilder = new ProcessBuilder("python", "Driver.py");
 	  		processBuilder.inheritIO();
+	  		
+	  		
+	  		
 			try {
 				Process p = processBuilder.start();
-				TimeUnit.SECONDS.sleep(3);
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 	    	 
 	      }		
 	   }
-	
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
