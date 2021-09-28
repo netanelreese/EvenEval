@@ -10,7 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
@@ -374,12 +374,18 @@ public class App extends JFrame implements ActionListener {
 	  		
 			try {
 				Process p = processBuilder.start(); //starting the instance
+				TimeUnit.SECONDS.sleep(5);
+				aSuccess(action);
+				bSuccess(action);
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 	    	 
-	      }		
+	      } catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}		
 	   }
 	}
 	@Override
@@ -387,5 +393,14 @@ public class App extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void aSuccess(String action) {
+		if (action == "cr") {JOptionPane.showMessageDialog(this, "Assignment Created Successfully!");}
+		
+		
+	}
+	private void bSuccess(String action) {
+		if (action == "gr") {JOptionPane.showMessageDialog(this, "Assignment Graded Successfully!");}
 
+	}
 }
