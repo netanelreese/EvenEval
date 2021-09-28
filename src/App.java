@@ -375,17 +375,20 @@ public class App extends JFrame implements ActionListener {
 			try {
 				Process p = processBuilder.start(); //starting the instance
 				TimeUnit.SECONDS.sleep(5);
-				aSuccess(action);
-				bSuccess(action);
+				
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				aSuccess(action);
+
+				bSuccess(action);
 	    	 
-	      } catch (InterruptedException e1) {
+	        } catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}		
+			}
+
 	   }
 	}
 	@Override
