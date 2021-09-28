@@ -351,7 +351,7 @@ public class App extends JFrame implements ActionListener {
 	    	String action = e.getActionCommand();
 	    	
 	    	try {
-				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.txt"));
+				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.toml"));
 				
 		    	if(action.equals("cr")) {
 		    		out.write("A\n"); //writing that we wanna create the assignment with the number inputted
