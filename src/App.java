@@ -228,13 +228,12 @@ public class App extends JFrame implements ActionListener {
 	         String enterAssnID = "Enter Assignment ID";
 	         
 	         if( command.equals( "Grade an Assignment" ))  {
-		        	String id = "";
 		            JFrame popup = new JFrame("Enter Assignment ID");
 		            
 		            JLabel enterID = new JLabel(enterAssnID);
 		            JButton ok = new JButton("OK");
 		            ok.setBackground(cream);
-		            JTextField assnID = new JTextField();
+		            assnID = new JTextField();
 		            assnID.setEditable(true);
 		            assnID.setPreferredSize(new Dimension(200, 35));
 		            
@@ -373,17 +372,14 @@ public class App extends JFrame implements ActionListener {
 	  		processBuilder.inheritIO();
 	  		
 			try {
-				Process p = processBuilder.start(); //starting the instance
+				processBuilder.start(); //starting the instance
 				TimeUnit.SECONDS.sleep(5);
-				
+				aSuccess(action);
+				bSuccess(action);
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-				aSuccess(action);
-
-				bSuccess(action);
-	    	 
 	        } catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
