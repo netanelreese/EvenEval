@@ -42,6 +42,9 @@ public class App extends JFrame implements ActionListener {
 	private JLabel company = new JLabel("/src/");
     JTextField peerReviewTitle = new JTextField();
 	private Font labelFont = new Font("Sans Serif", Font.BOLD, 25);
+	JTextField keyField = new JTextField();
+	JTextField urlField = new JTextField();
+	JTextField courseField = new JTextField();
 	private Color cream = new Color(255, 241, 208);	
 	private Color crimson = new Color(132, 22, 23);
 	
@@ -66,9 +69,6 @@ public class App extends JFrame implements ActionListener {
 				JLabel apiKey = new JLabel("Canvas API Key:");
 				JLabel apiUrl = new JLabel("Canvas API URL:");
 				JLabel courseID = new JLabel("Course ID:");
-				JTextField keyField = new JTextField();
-				JTextField urlField = new JTextField();
-				JTextField courseField = new JTextField();
 				JButton ok = new JButton("OK");
 				
 				
@@ -115,23 +115,82 @@ public class App extends JFrame implements ActionListener {
 			    
 			    settings.pack();
 			    
-			    keyField.addActionListener(new ActionListener() {
-	    	    	  public void actionPerformed(ActionEvent event) {
-	    	    		  apiString = keyField.getText();
-	    	    	  }
-	    	    	});
+	    	    keyField.getDocument().addDocumentListener(new DocumentListener() {
+	    	        @Override
+	    	        public void insertUpdate(DocumentEvent documentEvent) {
+	    	            setKey();
+	    	        }
+
+	    	        @Override
+	    	        public void removeUpdate(DocumentEvent documentEvent) {
+	    	            setKey();
+	    	        }
+
+	    	        @Override
+	    	        public void changedUpdate(DocumentEvent documentEvent) {
+	    	        }
+	    	    });
+	    	    
+	    	    keyField.addActionListener(
+	    	            new ActionListener() {
+	    	                public void actionPerformed(ActionEvent e) {
+	    	                    setKey();
+	    	                }
+	    	            }
+	    	    );
 			    
-			    urlField.addActionListener(new ActionListener() {
-	    	    	  public void actionPerformed(ActionEvent event) {
-	    	    		  urlString = urlField.getText();
-	    	    	  }
-	    	    	});
+	    	    urlField.getDocument().addDocumentListener(new DocumentListener() {
+	    	        @Override
+	    	        public void insertUpdate(DocumentEvent documentEvent) {
+	    	            setURL();
+	                    System.out.println(urlString);
+
+	    	        }
+
+	    	        @Override
+	    	        public void removeUpdate(DocumentEvent documentEvent) {
+	    	            setURL();
+	                    System.out.println(urlString);
+
+	    	        }
+
+	    	        @Override
+	    	        public void changedUpdate(DocumentEvent documentEvent) {
+	    	        }
+	    	    });
+	    	    
+	    	    urlField.addActionListener(
+	    	            new ActionListener() {
+	    	                public void actionPerformed(ActionEvent e) {
+	    	                    setURL();
+	    	                    System.out.println(urlString);
+	    	                }
+	    	            }
+	    	    );
 			    
-			    courseField.addActionListener(new ActionListener() {
-	    	    	  public void actionPerformed(ActionEvent event) {
-	    	    		  courseString = courseField.getText();
-	    	    	  }
-	    	    	});
+	    	    courseField.getDocument().addDocumentListener(new DocumentListener() {
+	    	        @Override
+	    	        public void insertUpdate(DocumentEvent documentEvent) {
+	    	            setCourseField();
+	    	        }
+
+	    	        @Override
+	    	        public void removeUpdate(DocumentEvent documentEvent) {
+	    	            setCourseField();
+	    	        }
+
+	    	        @Override
+	    	        public void changedUpdate(DocumentEvent documentEvent) {
+	    	        }
+	    	    });
+	    	    
+	    	    courseField.addActionListener(
+	    	            new ActionListener() {
+	    	                public void actionPerformed(ActionEvent e) {
+	    	                    setCourseField();
+	    	                }
+	    	            }
+	    	    );
 			    
 			    settings.setVisible(true);
 			    
@@ -273,15 +332,11 @@ public class App extends JFrame implements ActionListener {
 		    	        @Override
 		    	        public void insertUpdate(DocumentEvent documentEvent) {
 		    	            setAssnID();
-    	                    System.out.println(assnIDNum);
-
 		    	        }
 
 		    	        @Override
 		    	        public void removeUpdate(DocumentEvent documentEvent) {
 		    	            setAssnID();
-    	                    System.out.println(assnIDNum);
-
 		    	        }
 
 		    	        @Override
@@ -293,7 +348,6 @@ public class App extends JFrame implements ActionListener {
 		    	            new ActionListener() {
 		    	                public void actionPerformed(ActionEvent e) {
 		    	                    setAssnID();
-		    	                    System.out.println(assnIDNum);
 		    	                }
 		    	            }
 		    	    );
@@ -453,5 +507,14 @@ public class App extends JFrame implements ActionListener {
 	}
 	private void setAssnID() {
 	    assnIDNum = assnID.getText();
+	}
+	private void setKey() {
+	    apiString = keyField.getText();
+	}
+	private void setCourseField() {
+	    courseString = courseField.getText();
+	}
+	private void setURL() {
+	    urlString = urlField.getText();
 	}
 }
