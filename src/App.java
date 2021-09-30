@@ -351,7 +351,6 @@ public class App extends JFrame implements ActionListener {
 	    	String action = e.getActionCommand();
 	    	
 	    	
-	    	PythonInterpreter pyinp;
 	    	try {
 				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.toml"));
 				

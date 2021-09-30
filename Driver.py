@@ -10,7 +10,7 @@ import sentiment_analysis
 def main() :
 
 
-    with open('pyinp.txt', 'r') as file:
+    with open('pyinp.toml', 'r') as file:
         lines = [line.strip() for line in file]
 
     x = lines[0];
