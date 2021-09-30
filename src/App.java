@@ -143,14 +143,12 @@ public class App extends JFrame implements ActionListener {
 	    	        @Override
 	    	        public void insertUpdate(DocumentEvent documentEvent) {
 	    	            setURL();
-	                    System.out.println(urlString);
 
 	    	        }
 
 	    	        @Override
 	    	        public void removeUpdate(DocumentEvent documentEvent) {
 	    	            setURL();
-	                    System.out.println(urlString);
 
 	    	        }
 
@@ -163,7 +161,6 @@ public class App extends JFrame implements ActionListener {
 	    	            new ActionListener() {
 	    	                public void actionPerformed(ActionEvent e) {
 	    	                    setURL();
-	    	                    System.out.println(urlString);
 	    	                }
 	    	            }
 	    	    );
