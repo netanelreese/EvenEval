@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import org.python.util.PythonInterpreter;
 
 import javax.swing.*;
 
@@ -352,7 +351,6 @@ public class App extends JFrame implements ActionListener {
 	    	String action = e.getActionCommand();
 	    	
 	    	
-	    	PythonInterpreter pyinp;
 	    	try {
 				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.toml"));
 				
