@@ -1,8 +1,6 @@
 # EvenEval  [![CodeQL](https://github.com/netanelreese/EvenEval/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/netanelreese/EvenEval/actions/workflows/codeql-analysis.yml)
 **CANVAS LMS SOFTWARE PLUGIN**
 
-*Testing GitBot*
-
 ### Vocabulary Used
 - APR: Automatic Peer Review, refers to automatic_peer_review.py and its functions
 - SA: Sentiment Analysis: refers to sentiment_analysis.py and its functions
