@@ -1,5 +1,0 @@
-base_class: PyShadowString
-want_dict: true
-ctr: PyObject str, PyObject shadow
-incl: object
-no_toString: true

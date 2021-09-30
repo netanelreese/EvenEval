@@ -1,4 +1,0 @@
-base_class: Encoder
-want_dict: true
-ctr: PyObject[] args, String[] kwds
-incl: object
