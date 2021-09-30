@@ -13,7 +13,7 @@ def main() :
     with open('A.txt', 'r') as file:
         lines = [line.strip() for line in file]
 
-    x = lines[0];
+    x = lines[0]
 
     #TODO: Peer Review Tests
     if (x == 'A'):
