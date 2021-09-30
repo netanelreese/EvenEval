@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  * Runs the python code through a GUI.
@@ -38,6 +40,7 @@ public class App extends JFrame implements ActionListener {
 	private JTextField assnID;
 	private JLabel title = new JLabel("EvenEval");
 	private JLabel company = new JLabel("/src/");
+    JTextField peerReviewTitle = new JTextField();
 	private Font labelFont = new Font("Sans Serif", Font.BOLD, 25);
 	private Color cream = new Color(255, 241, 208);	
 	private Color crimson = new Color(132, 22, 23);
@@ -266,11 +269,34 @@ public class App extends JFrame implements ActionListener {
 		    		popupPositionConst.gridy = 2;
 		    	    popup.add(ok, popupPositionConst);
 		    	    
-		    	    assnID.addActionListener(new ActionListener() {
-		    	    	  public void actionPerformed(ActionEvent event) {
-		    	    		 assnIDNum = assnID.getText();
-		    	    	  }
-		    	    	});
+		    	    assnID.getDocument().addDocumentListener(new DocumentListener() {
+		    	        @Override
+		    	        public void insertUpdate(DocumentEvent documentEvent) {
+		    	            setAssnID();
+    	                    System.out.println(assnIDNum);
+
+		    	        }
+
+		    	        @Override
+		    	        public void removeUpdate(DocumentEvent documentEvent) {
+		    	            setAssnID();
+    	                    System.out.println(assnIDNum);
+
+		    	        }
+
+		    	        @Override
+		    	        public void changedUpdate(DocumentEvent documentEvent) {
+		    	        }
+		    	    });
+		    	    
+		    	    assnID.addActionListener(
+		    	            new ActionListener() {
+		    	                public void actionPerformed(ActionEvent e) {
+		    	                    setAssnID();
+		    	                    System.out.println(assnIDNum);
+		    	                }
+		    	            }
+		    	    );
 		    	    
 		    	    ok.setActionCommand("gr");
 		    	    
@@ -289,7 +315,7 @@ public class App extends JFrame implements ActionListener {
 		            JButton ok = new JButton("OK");
 		            ok.setBackground(cream);
 		            JLabel peerReview = new JLabel("Enter Peer Review Num");
-		            JTextField peerReviewTitle = new JTextField();
+
 		            peerReviewTitle.setEditable(true);
 		            peerReviewTitle.setPreferredSize(new Dimension(200, 35));
 		            
@@ -330,12 +356,31 @@ public class App extends JFrame implements ActionListener {
 		    		popupPositionConst.gridy = 2;
 		    	    popup.add(ok, popupPositionConst);
 		    	    
-		    	    peerReviewTitle.addActionListener(new ActionListener() {
-		    	    	  public void actionPerformed(ActionEvent event) {
-		    	    		  reviewNum = peerReviewTitle.getText();
-		    	    	  }
-		    	    	});
+		    	    peerReviewTitle.getDocument().addDocumentListener(new DocumentListener() {
+		    	        @Override
+		    	        public void insertUpdate(DocumentEvent documentEvent) {
+		    	            setReviewNum();
+		    	        }
+
+		    	        @Override
+		    	        public void removeUpdate(DocumentEvent documentEvent) {
+		    	            setReviewNum();
+		    	        }
+
+		    	        @Override
+		    	        public void changedUpdate(DocumentEvent documentEvent) {
+		    	        }
+		    	    });
 		    	    
+		    	    peerReviewTitle.addActionListener(
+		    	            new ActionListener() {
+		    	                public void actionPerformed(ActionEvent e) {
+		    	                    setReviewNum();
+		    	                }
+		    	            }
+		    	    );
+		    	    
+
 		    	    ok.setActionCommand("cr");
 		    	    
 		    	    ok.addActionListener(new ReviewClickListener());
@@ -402,5 +447,11 @@ public class App extends JFrame implements ActionListener {
 	private void bSuccess(String action) {
 		if (action == "gr") {JOptionPane.showMessageDialog(this, "Assignment Graded Successfully!");}
 
+	}
+	private void setReviewNum() {
+	    reviewNum = peerReviewTitle.getText();
+	}
+	private void setAssnID() {
+	    assnIDNum = assnID.getText();
 	}
 }
