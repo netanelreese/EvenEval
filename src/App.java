@@ -467,19 +467,23 @@ public class App extends JFrame implements ActionListener {
 	    	//start new shell instance running python with Driver as the arg
 	  		ProcessBuilder processBuilder = new ProcessBuilder("python", "Driver.py");
 	  		processBuilder.inheritIO();
-	  		
+	  		Process p = null;
 			try {
-				processBuilder.start(); //starting the instance
-				TimeUnit.SECONDS.sleep(5);
-				aSuccess(action);
-				bSuccess(action);
+				p = processBuilder.start(); //starting the instance
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-	        } catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+	        } 
+			while(p.isAlive()) {}
+			int success = p.exitValue();
+			if (success == 0) {
+				aSuccess(action);
+				bSuccess(action);
+			}
+			else if(success != 0) {
+				aFail(action);
+				bFail(action);
 			}
 
 	   }
@@ -497,6 +501,15 @@ public class App extends JFrame implements ActionListener {
 	}
 	private void bSuccess(String action) {
 		if (action == "gr") {JOptionPane.showMessageDialog(this, "Assignment Graded Successfully!");}
+
+	}
+	private void aFail(String action) {
+		if (action == "cr") {JOptionPane.showMessageDialog(this, "Assignment Creation Fail.", "ERROR", JOptionPane.ERROR_MESSAGE);}
+		
+		
+	}
+	private void bFail(String action) {
+		if (action == "gr") {JOptionPane.showMessageDialog(this, "Assignment Grading Fail.", "ERROR", JOptionPane.ERROR_MESSAGE);}
 
 	}
 	private void setReviewNum() {
