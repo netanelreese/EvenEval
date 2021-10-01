@@ -7,9 +7,11 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
@@ -65,16 +67,26 @@ public class App extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) { //creating frame for settings menu
 				// TODO Auto-generated method stub
 				JFrame settings = new JFrame("Settings");
-				settings.setPreferredSize(new Dimension(400, 250));
+				settings.setPreferredSize(new Dimension(700, 250));
 				JLabel apiKey = new JLabel("Canvas API Key:");
 				JLabel apiUrl = new JLabel("Canvas API URL:");
 				JLabel courseID = new JLabel("Course ID:");
 				JButton ok = new JButton("OK");
 				
+				try {
+					getSettings();
+				} catch (FileNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 				
 			    settings.setLayout(new GridBagLayout());
 			    GridBagConstraints settingsPositionConst = new GridBagConstraints();
 				
+			    keyField.setText(apiString);
+			    urlField.setText(urlString);
+			    courseField.setText(courseString);
+			    
 			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
 			    settingsPositionConst.gridx = 0;
 			    settingsPositionConst.gridy = 0;
@@ -83,7 +95,7 @@ public class App extends JFrame implements ActionListener {
 			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
 			    settingsPositionConst.gridx = 1;
 			    settingsPositionConst.gridy = 0;
-			    keyField.setPreferredSize(new Dimension(200, 35));
+			    keyField.setPreferredSize(new Dimension(490, 35));
 			    settings.add(keyField, settingsPositionConst);
 			    
 			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
@@ -94,7 +106,7 @@ public class App extends JFrame implements ActionListener {
 			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
 			    settingsPositionConst.gridx = 1;
 			    settingsPositionConst.gridy = 1;
-			    urlField.setPreferredSize(new Dimension(200, 35));
+			    urlField.setPreferredSize(new Dimension(300, 35));
 			    settings.add(urlField, settingsPositionConst);
 			    
 			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
@@ -105,7 +117,7 @@ public class App extends JFrame implements ActionListener {
 			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
 			    settingsPositionConst.gridx = 1;
 			    settingsPositionConst.gridy = 2;
-			    courseField.setPreferredSize(new Dimension(200, 35));
+			    courseField.setPreferredSize(new Dimension(300, 35));
 			    settings.add(courseField, settingsPositionConst);
 			    
 			    settingsPositionConst.insets = new Insets(5, 5, 5, 5);
@@ -526,5 +538,12 @@ public class App extends JFrame implements ActionListener {
 	}
 	private void setURL() {
 	    urlString = urlField.getText();
+	}
+	private void getSettings() throws FileNotFoundException {
+		Scanner scanner = new Scanner(new File("config.toml"));
+		apiString = scanner.nextLine();
+		urlString = scanner.nextLine();
+		courseString = scanner.nextLine();
+		scanner.close();
 	}
 }
