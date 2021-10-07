@@ -546,4 +546,9 @@ public class App extends JFrame implements ActionListener {
 		courseString = scanner.nextLine();
 		scanner.close();
 	}
+	private void inputError(String inp) {
+		if (inp == null) {
+			JOptionPane.showMessageDialogue(this, "Please enter an input", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+	}	
 }
