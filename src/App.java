@@ -456,8 +456,7 @@ public class App extends JFrame implements ActionListener {
 
 	private class ReviewClickListener implements ActionListener{
 	      public void actionPerformed(ActionEvent e) {
-	    	String action = e.getActionCommand();
-	    	
+	    	String action = e.getActionCommand();	
 	    	
 	    	try {
 				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.toml"));
