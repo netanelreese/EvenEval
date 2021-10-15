@@ -29,6 +29,7 @@ class APR:
             'submission_types': 'online_text_entry',
             'points_possible': 10,
             'description': description,
+            'published' : True
         })
         # users = config.COURSE.get_users(enrollment_type=['student'])
         # for user in users:
