@@ -1,3 +1,5 @@
+from canvasapi.exceptions import CanvasException
+
 import config
 import canvasapi
 
@@ -44,4 +46,12 @@ class APR:
                 for student2 in users:
                     if (student1.id != student2.id):
                         # assignment.submit({'submission_type':'none', 'user_id':student1.id})
-                        assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
+                        try:
+                            assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
+                        except CanvasException as err:
+                            assignment.delete()
+                            print('Assignment not created: could not assign peer reviews', err)
+
+
+
+
