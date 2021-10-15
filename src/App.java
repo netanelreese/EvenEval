@@ -12,8 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -523,11 +521,11 @@ public class App extends JFrame implements ActionListener {
 		if (action == "gr") {JOptionPane.showMessageDialog(this, "Assignment Grading Fail.", "ERROR", JOptionPane.ERROR_MESSAGE);}
 
 	}
-	private void inputError(String inp) {
-		if (inp == null) {
+	//private void inputError(String inp) {
+		//if (inp == null) {
 			//JOptionPane.showMessageDialogue(this, "Please enter an input", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}
-	}	
+		//}
+	//}	
 	private void setReviewNum() {
 	    reviewNum = peerReviewTitle.getText();
 	}
