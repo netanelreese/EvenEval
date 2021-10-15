@@ -2,9 +2,7 @@ import canvasapi
 
 import auto_peer_review
 import config
-import Grouper
-import Grader
-import AssignmentCreator
+
 import sentiment_analysis
 
 def main() :
@@ -19,10 +17,9 @@ def main() :
     if (x == 'A'):
         peer_review_number = lines[1]
         peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
-        pos_neg = "P"
 
         peer = auto_peer_review.APR()
-        peer.create_assn(peer_review_name, pos_neg)
+        peer.create_assn(peer_review_name)
         print("A success")
 
     #TODO: NLTK Tests

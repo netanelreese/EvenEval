@@ -3,7 +3,7 @@ from math import floor
 import canvasapi
 
 import config
-import Grader
+
 
 class Grouper:
     def autogroup(self, group_num, category_id, class_num): #Auto groups each member in a course
