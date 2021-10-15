@@ -523,6 +523,11 @@ public class App extends JFrame implements ActionListener {
 		if (action == "gr") {JOptionPane.showMessageDialog(this, "Assignment Grading Fail.", "ERROR", JOptionPane.ERROR_MESSAGE);}
 
 	}
+	private void inputError(String inp) {
+		if (inp == null) {
+			//JOptionPane.showMessageDialogue(this, "Please enter an input", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
+	}	
 	private void setReviewNum() {
 	    reviewNum = peerReviewTitle.getText();
 	}
@@ -545,9 +550,5 @@ public class App extends JFrame implements ActionListener {
 		courseString = scanner.nextLine();
 		scanner.close();
 	}
-	private void inputError(String inp) {
-		if (inp == null) {
-			JOptionPane.showMessageDialogue(this, "Please enter an input", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}
-	}	
+
 }
