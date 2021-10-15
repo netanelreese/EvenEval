@@ -14,7 +14,7 @@ def main() :
     x = lines[0]
 
     #TODO: Peer Review Tests
-    if (x == 'A'):
+    if x == 'A':
         peer_review_number = lines[1]
         peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
 
@@ -23,7 +23,7 @@ def main() :
         print("A success")
 
     #TODO: NLTK Tests
-    if (x == 'B'):
+    if x == 'B':
         assignment_id = lines[1]
         processor = sentiment_analysis.sentiment_analysis()
         processor.getSubmissions(assignment_id)
