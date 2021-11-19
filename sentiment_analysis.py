@@ -26,10 +26,11 @@ class sentiment_analysis():
             compound_sum = 0
             for peer_review in peer_reviews:
                 if peer_review.workflow_state == 'completed':
-                    num_reviews = num_reviews + 1
                     comments = peer_review.submission_comments
                     for comment in comments:
                         compound_sum = compound_sum + self.analyze(comment['comment'])
+                        print(compound_sum)
+                        num_reviews = num_reviews + 1
                 else:
                     print('Peer Review not completed')
             if (num_reviews != 0):
