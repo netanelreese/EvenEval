@@ -29,7 +29,6 @@ class sentiment_analysis():
                     comments = peer_review.submission_comments
                     for comment in comments:
                         compound_sum = compound_sum + self.analyze(comment['comment'])
-                        print(compound_sum)
                         num_reviews = num_reviews + 1
                 else:
                     print('Peer Review not completed')
