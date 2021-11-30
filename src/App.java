@@ -214,6 +214,7 @@ public class App extends JFrame implements ActionListener {
 							out.write(courseString);
 							
 							out.close();
+							settings.dispose();
 							
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
