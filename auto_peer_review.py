@@ -6,7 +6,7 @@ import canvasapi
 
 
 class APR:
-    def create_assn(self, assignment_name):
+    def create_assn(self, assignment_name, cat_id):
         description = '<p>Directions for this assignment go as follows.<br>' \
                       '<ol><li> Click the "Start Assignment" button </li> <li> Now Type your name in the text box</li>' \
                       '<li> Click Submit.</li> </ol> <br>' \
@@ -36,22 +36,19 @@ class APR:
         # users = config.COURSE.get_users(enrollment_type=['student'])
         # for user in users:
         # assignment.get_submission(user).edit(workflow_state='submitted')
-        self.generate_peer_reviews(assignment)
+        self.generate_peer_reviews(assignment, cat_id)
 
-    def generate_peer_reviews(self, assignment):
+    def generate_peer_reviews(self, assignment, cat_id):
         groups = config.COURSE.get_groups()
         for group in groups:
-            users = group.get_users()
-            for student1 in users:
-                for student2 in users:
-                    if (student1.id != student2.id):
-                        # assignment.submit({'submission_type':'none', 'user_id':student1.id})
-                        try:
-                            assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
-                        except CanvasException as err:
-                            assignment.delete()
-                            print('Assignment not created: could not assign peer reviews', err)
-
-
-
-
+            if str(group.group_category_id) == cat_id:
+                users = group.get_users()
+                for student1 in users:
+                    for student2 in users:
+                        if (student1.id != student2.id):
+                             # assignment.submit({'submission_type':'none', 'user_id':student1.id})
+                            try:
+                                assignment.get_submission(student1.id).create_submission_peer_review(student2.id)
+                            except CanvasException as err:
+                                assignment.delete()
+                                print('Assignment not created: could not assign peer reviews', err)

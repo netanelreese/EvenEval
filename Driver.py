@@ -15,11 +15,13 @@ def main() :
 
     #TODO: Peer Review Tests
     if x == 'A':
+        peer_review_group_cat = lines[2].split(' ')
+        peer_review_group_cat_int = peer_review_group_cat[(peer_review_group_cat.__len__()-1)]
         peer_review_number = lines[1]
         peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
 
         peer = auto_peer_review.APR()
-        peer.create_assn(peer_review_name)
+        peer.create_assn(peer_review_name, peer_review_group_cat_int)
         print("A success")
 
     #TODO: NLTK Tests
