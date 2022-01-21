@@ -334,7 +334,7 @@ public class App extends JFrame implements ActionListener {
 	
 	private class ButtonClickListener implements ActionListener{ //creating the popups that take input and write to pyinp.txt
 	      public void actionPerformed(ActionEvent e) {
-	    	 groupCat = (String)dropDown.getSelectedItem();
+	    	 groupCat = groupCategoryID.get(groupCategoryName.indexOf(dropDown.getSelectedItem()));
 	    	 
 	         String command = e.getActionCommand();
 	         String enterAssnID = "Enter Assignment ID";
