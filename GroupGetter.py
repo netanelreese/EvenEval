@@ -14,7 +14,7 @@ def main():
           lines = []
           group_cats = config.COURSE.get_group_categories()
           for group_cat in group_cats:
-               cat = group_cat.name + " " + str(group_cat.id) + '\n'
+               cat = group_cat.name + ":" + str(group_cat.id) + '\n'
                lines.append(cat)
           file.writelines(lines)
           file.close()
