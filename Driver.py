@@ -15,8 +15,7 @@ def main() :
 
     #TODO: Peer Review Tests
     if x == 'A':
-        peer_review_group_cat = lines[2].split(' ')
-        peer_review_group_cat_int = peer_review_group_cat[(peer_review_group_cat.__len__()-1)]
+        peer_review_group_cat_int = lines[2]
         peer_review_number = lines[1]
         peer_review_name = 'Peer Evaluation ' + str(peer_review_number)
 
