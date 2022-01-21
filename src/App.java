@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -33,6 +34,8 @@ public class App extends JFrame implements ActionListener {
 	private String apiString;
 	private String urlString;
 	private String courseString;
+	private ArrayList<String> groupCategoryName = new ArrayList<String>();
+	private ArrayList<String> groupCategoryID = new ArrayList<String>();
 	private static final long serialVersionUID = 1L;
 	private JButton createAssn;
 	private JLabel selectOption = new JLabel("Please select an option below:");
@@ -54,6 +57,12 @@ public class App extends JFrame implements ActionListener {
 
 		JMenuBar bar = new JMenuBar();
 		setJMenuBar(bar);
+		
+		getSettings();
+		
+		String[] boxArr = {groupCategoryName.get(0), groupCategoryName.get(1)};
+		
+		JComboBox<String> dropDown = new JComboBox<String>(boxArr);
 		
 		JMenu n = new JMenu("Settings");
 		bar.add(n);
@@ -122,6 +131,7 @@ public class App extends JFrame implements ActionListener {
 			    settingsPositionConst.gridx = 0;
 			    settingsPositionConst.gridy = 3;
 			    settings.add(ok, settingsPositionConst);
+			    
 			    
 			    settings.pack();
 			    
@@ -282,6 +292,10 @@ public class App extends JFrame implements ActionListener {
 	    positionConst.gridx = 1;
 	    positionConst.gridy = 4;
 	    add(gradeAssn, positionConst);
+	    
+	    positionConst.gridx = 0;
+	    positionConst.gridy = 6;
+	    add(dropDown, positionConst);
 	    
 	    gradeAssn.setActionCommand("Grade an Assignment");
 	    createAssn.setActionCommand("Create an Assignment");
@@ -547,6 +561,14 @@ public class App extends JFrame implements ActionListener {
 		apiString = scanner.nextLine();
 		urlString = scanner.nextLine();
 		courseString = scanner.nextLine();
+		String[] temp = new String[2];
+		
+		while(scanner.hasNext()) {
+			temp = (scanner.nextLine()).split(",");
+			groupCategoryName.add(temp[0]);
+			groupCategoryID.add(temp[1]);
+		}
+		
 		scanner.close();
 	}
 
