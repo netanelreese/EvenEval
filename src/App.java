@@ -247,6 +247,7 @@ public class App extends JFrame implements ActionListener {
 							out.write(urlString);
 							out.write("\n");
 							out.write(courseString);
+							out.write("\n");
 							
 							out.close();
 							settings.dispose();
