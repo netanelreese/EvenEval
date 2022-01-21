@@ -34,6 +34,7 @@ public class App extends JFrame implements ActionListener {
 	private String apiString;
 	private String urlString;
 	private String courseString;
+	private String groupCat;
 	private ArrayList<String> groupCategoryName = new ArrayList<String>();
 	private ArrayList<String> groupCategoryID = new ArrayList<String>();
 	private static final long serialVersionUID = 1L;
@@ -50,6 +51,7 @@ public class App extends JFrame implements ActionListener {
 	JTextField courseField = new JTextField();
 	private Color cream = new Color(255, 241, 208);	
 	private Color crimson = new Color(132, 22, 23);
+	JComboBox<Object> dropDown;
 	
 	
 	public void runGroupGetter() {
@@ -84,7 +86,7 @@ public class App extends JFrame implements ActionListener {
 		 */
 		runGroupGetter(); 
 		getSettings();
-		JComboBox<Object> dropDown = new JComboBox<Object>(groupCategoryName.toArray());
+		dropDown = new JComboBox<Object>(groupCategoryName.toArray());
 		dropDown.setBackground(cream);
 		
 		JMenu n = new JMenu("Settings");
@@ -331,6 +333,8 @@ public class App extends JFrame implements ActionListener {
 	
 	private class ButtonClickListener implements ActionListener{ //creating the popups that take input and write to pyinp.txt
 	      public void actionPerformed(ActionEvent e) {
+	    	 groupCat = (String)dropDown.getSelectedItem();
+	    	 
 	         String command = e.getActionCommand();
 	         String enterAssnID = "Enter Assignment ID";
 	         
@@ -499,11 +503,13 @@ public class App extends JFrame implements ActionListener {
 				
 		    	if(action.equals("cr")) {
 		    		out.write("A\n"); //writing that we wanna create the assignment with the number inputted
-		    		out.write(reviewNum);
+		    		out.write(reviewNum + "\n");
+		    		out.write(groupCat);
 		    	}
 		    	else if(action.equals("gr")) {
 		    		out.write("B\n"); //writing to pyinp that we wanna grade assignment with input assingment id
-		    		out.write(assnIDNum);
+		    		out.write(assnIDNum + "\n");
+		    		out.write(groupCat);
 		    	}
 		    	out.close();
 			} catch (IOException e2) {
