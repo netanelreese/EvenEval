@@ -52,17 +52,40 @@ public class App extends JFrame implements ActionListener {
 	private Color crimson = new Color(132, 22, 23);
 	
 	
+	public void runGroupGetter() {
+  		ProcessBuilder processBuilder = new ProcessBuilder("python", "GroupGetter.py");
+  		processBuilder.inheritIO();
+  		Process p = null;
+		try {
+			p = processBuilder.start(); //starting the instance
+			
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+        }
+		while(p.isAlive()) {}
+		int success = p.exitValue();
+		if (success == 0) {
+			ggSuccess();
+		}
+		else if(success != 0) {
+			ggFail();
+		}
+	}
+	
 	public void launch() throws FileNotFoundException {
 		setTitle("EvenEval");
 
 		JMenuBar bar = new JMenuBar();
 		setJMenuBar(bar);
 		
+		/**
+		 * Getter for the group categories and place into drop down box
+		 */
+		runGroupGetter(); 
 		getSettings();
-		
-		String[] boxArr = {groupCategoryName.get(0), groupCategoryName.get(1)};
-		
-		JComboBox<String> dropDown = new JComboBox<String>(boxArr);
+		JComboBox<Object> dropDown = new JComboBox<Object>(groupCategoryName.toArray());
+		dropDown.setBackground(cream);
 		
 		JMenu n = new JMenu("Settings");
 		bar.add(n);
@@ -536,11 +559,15 @@ public class App extends JFrame implements ActionListener {
 		if (action == "gr") {JOptionPane.showMessageDialog(this, "Assignment Grading Fail.", "ERROR", JOptionPane.ERROR_MESSAGE);}
 
 	}
-	//private void inputError(String inp) {
-		//if (inp == null) {
-			//JOptionPane.showMessageDialogue(this, "Please enter an input", "ERROR", JOptionPane.ERROR_MESSAGE);
-		//}
-	//}	
+	private void ggSuccess() {
+		JOptionPane.showMessageDialog(this, "Successfully Fetched Group Categories");
+
+	}
+	private void ggFail() {
+		JOptionPane.showMessageDialog(this, "Failure With GroupGetter.py", "ERROR", JOptionPane.ERROR_MESSAGE);
+		
+		
+	}
 	private void setReviewNum() {
 	    reviewNum = peerReviewTitle.getText();
 	}
