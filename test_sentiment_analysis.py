@@ -21,7 +21,8 @@ class TestSentiment(unittest.TestCase):
 
     def test_getSubmissions(self):
         s = sentiment_analysis.sentiment_analysis()
-        
+        self.assertEqual(5, 5)
+
 
 
 if __name__ == '__main__':
