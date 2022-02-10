@@ -1,6 +1,6 @@
 import unittest
 import sentiment_analysis
-from EvenEval import config
+import config
 
 
 class TestSentiment(unittest.TestCase):
