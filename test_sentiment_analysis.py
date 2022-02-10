@@ -1,5 +1,6 @@
 import unittest
 import sentiment_analysis
+from EvenEval import config
 
 
 class TestSentiment(unittest.TestCase):
@@ -21,7 +22,20 @@ class TestSentiment(unittest.TestCase):
 
     def test_getSubmissions(self):
         s = sentiment_analysis.sentiment_analysis()
-        self.assertEqual(5, 5)
+        assignmentID = 1690556
+        s.getSubmissions(assignmentID)
+
+        assignment = assignment = config.COURSE.get_assignment(assignmentID)
+        users = config.COURSE.get_users(enrollment_type=['student'])
+
+        for user in users:
+            grade = assignment.get_submission(user).grade
+            if user.id == 188153:
+                self.assertEqual(grade, '4')
+            elif user.id == 223095:
+                self.assertEqual(grade, '10')
+            else:
+                self.assertEqual(grade, '0')
 
 
 
