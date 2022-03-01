@@ -33,7 +33,7 @@ class TestSentiment(unittest.TestCase):
             if user.id == 188153:
                 self.assertEqual(grade, '4')
             elif user.id == 223095:
-                self.assertEqual(grade, '10')
+                self.assertEqual(grade, '1')
             else:
                 self.assertEqual(grade, '0')
 
