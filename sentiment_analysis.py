@@ -47,13 +47,16 @@ class sentiment_analysis():
         z = 0
         w = 0
         for sentence in y:
+            print(sentence)
             z = z + 1
             x = sia.polarity_scores(sentence)
             w = w + x['compound']
+            print(x)
 
         result = w/z
         if (result<-0.05):
             print("Someone got a bad review :(")
+            print(text)
         return result
 
     def grade(self, average_compound):

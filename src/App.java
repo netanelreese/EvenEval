@@ -83,12 +83,12 @@ public class App extends JFrame implements ActionListener {
 		
 		/**
 		 * Getter for the group categories and place into drop down box
-		 */
+		 
 		runGroupGetter(); 
 		getSettings();
 		dropDown = new JComboBox<Object>(groupCategoryName.toArray());
 		dropDown.setBackground(cream);
-		
+		*/
 		JMenu n = new JMenu("Settings");
 		bar.add(n);
 		JMenuItem cSet = new JMenuItem("Canvas Settings");
@@ -318,11 +318,11 @@ public class App extends JFrame implements ActionListener {
 	    positionConst.gridx = 1;
 	    positionConst.gridy = 4;
 	    add(gradeAssn, positionConst);
-	    
+	    /*
 	    positionConst.gridx = 0;
 	    positionConst.gridy = 6;
 	    add(dropDown, positionConst);
-	    
+	    */
 	    gradeAssn.setActionCommand("Grade an Assignment");
 	    createAssn.setActionCommand("Create an Assignment");
 	    
@@ -334,7 +334,7 @@ public class App extends JFrame implements ActionListener {
 	
 	private class ButtonClickListener implements ActionListener{ //creating the popups that take input and write to pyinp.txt
 	      public void actionPerformed(ActionEvent e) {
-	    	 groupCat = groupCategoryID.get(groupCategoryName.indexOf(dropDown.getSelectedItem()));
+	    	 //groupCat = groupCategoryID.get(groupCategoryName.indexOf(dropDown.getSelectedItem()));
 	    	 
 	         String command = e.getActionCommand();
 	         String enterAssnID = "Enter Assignment ID";
@@ -419,11 +419,22 @@ public class App extends JFrame implements ActionListener {
 		            JButton ok = new JButton("OK");
 		            ok.setBackground(cream);
 		            JLabel peerReview = new JLabel("Enter Peer Review Num");
-
+		            JLabel groups = new JLabel("Select group category");
+		            
 		            peerReviewTitle.setEditable(true);
 		            peerReviewTitle.setPreferredSize(new Dimension(200, 35));
 		            
-		            
+		            runGroupGetter(); 
+		    		try {
+						getSettings();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+		    		dropDown = new JComboBox<Object>(groupCategoryName.toArray());
+		    		dropDown.setBackground(cream);
+		    		
+		    	    
 		            popup.setVisible(true);
 		            
 		    		popup.setPreferredSize(new Dimension(600, 400));
@@ -439,6 +450,9 @@ public class App extends JFrame implements ActionListener {
 		    		peerReview.setForeground(cream);
 		    		Font reviewFont = new Font("Comic Sans",Font.PLAIN, 12);
 		    		peerReview.setFont(reviewFont);
+		    		
+		    		groups.setForeground(cream);
+		    		groups.setFont(reviewFont);
 		    		
 		    		popupPositionConst.insets = new Insets(5, 5, 5, 5);
 		    		popupPositionConst.gridx = 0;
@@ -457,8 +471,20 @@ public class App extends JFrame implements ActionListener {
 		    	    
 		    	    popupPositionConst.insets = new Insets(5, 5, 5, 5);
 		    		popupPositionConst.gridx = 0;
-		    		popupPositionConst.gridy = 2;
+		    	    popupPositionConst.gridy = 2;
+		    	    popup.add(groups, popupPositionConst);
+		    	    
+		    	    popupPositionConst.insets = new Insets(5, 5, 5, 5);
+		    	    popupPositionConst.gridx = 1;
+		    	    popupPositionConst.gridy = 2;
+		    	    popup.add(dropDown, popupPositionConst);
+		    	    
+		    	    popupPositionConst.insets = new Insets(5, 5, 5, 5);
+		    		popupPositionConst.gridx = 1;
+		    		popupPositionConst.gridy = 3;
 		    	    popup.add(ok, popupPositionConst);
+		    	       	    
+		    	    
 		    	    
 		    	    peerReviewTitle.getDocument().addDocumentListener(new DocumentListener() {
 		    	        @Override
@@ -503,6 +529,7 @@ public class App extends JFrame implements ActionListener {
 				BufferedWriter out = new BufferedWriter(new FileWriter("pyinp.toml"));
 				
 		    	if(action.equals("cr")) {
+		    		groupCat = groupCategoryID.get(groupCategoryName.indexOf(dropDown.getSelectedItem()));
 		    		out.write("A\n"); //writing that we wanna create the assignment with the number inputted
 		    		out.write(reviewNum + "\n");
 		    		out.write(groupCat);
@@ -510,7 +537,7 @@ public class App extends JFrame implements ActionListener {
 		    	else if(action.equals("gr")) {
 		    		out.write("B\n"); //writing to pyinp that we wanna grade assignment with input assingment id
 		    		out.write(assnIDNum + "\n");
-		    		out.write(groupCat);
+		    		//out.write(groupCat);
 		    	}
 		    	out.close();
 			} catch (IOException e2) {
